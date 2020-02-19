@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Users</title>
+</head>
+<body>
+<h1>All Users</h1>
+<p><a href="/admin/add">Add Users</a> |
+    <a href="/admin/update">Update Users</a> |
+    <a href="/admin/delete">Delete Users</a> |
+    <a href="/user">User psge</a> |
+    <a href="/logout">logout</a>
+</p>
+<div>
+    <table border="1px solid black">
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Password</td>
+            <td>Message</td>
+            <td>Role</td>
+        </tr>
+        <tr th:each="user : ${list}">
+            <td th:utext="${user.getId()}"></td>
+            <td th:utext="${user.getName()}"></td>
+            <td th:utext="${user.getPassword()}"></td>
+            <td th:utext="${user.getMessage()}"></td>
+            <td th:utext="${user.getRoles()}"></td>
+        </tr>
+
+        <!--<c:forEach var="user" items="${list}">-->
+        <!--<tr>-->
+        <!--<td>${user.getId()}</td>-->
+        <!--<td>${user.getName()}</td>-->
+        <!--<td>${user.getPassword()}</td>-->
+        <!--<td>${user.getMessage()}</td>-->
+        <!--<td>-->
+        <!--<c:forEach var="role" items="${user.getRoles()}">-->
+        <!--${role.toString()}<br>-->
+        <!--</c:forEach>-->
+        <!--</td>-->
+        <!--</tr>-->
+
+        <!--</c:forEach>-->
+    </table>
+</div>
+
+</body>
+</html>

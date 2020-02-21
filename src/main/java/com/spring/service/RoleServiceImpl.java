@@ -1,23 +1,26 @@
 package com.spring.service;
 
 import com.spring.model.Role;
-import com.spring.repository.RoleRepository;
+import com.spring.dao.RoleDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
+
 @Component
+@Transactional
 public class RoleServiceImpl implements RoleService {
 
-    private RoleRepository roleRepository;
+    private RoleDao roleDao;
 
     @Autowired
-    public RoleServiceImpl(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
+    public RoleServiceImpl(RoleDao roleDao) {
+        this.roleDao = roleDao;
     }
 
     @Override
     public Role findAllByRole(String role) {
-        return roleRepository.findAllByRole(role);
+        return roleDao.findAllByRole(role);
     }
 
 }

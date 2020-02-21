@@ -1,7 +1,7 @@
 package com.spring.service;
 
+import com.spring.dao.UserDao;
 import com.spring.model.User;
-import com.spring.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,18 +9,20 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 
 @Component
+@Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-    private UserRepository repository;
+    private UserDao repository;
     private PasswordEncoder passwordEncoder;
 
 
     @Autowired
-    public UserServiceImpl(UserRepository repository, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserDao repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
     }
@@ -48,16 +50,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void updateUser(User user) {
-        List<User> users = repository.findAll();
-        int i = 0;
-        for(User check : users){
-            if(check.getName().equals(user.getName())){
-                i++;
-            }
-        }
-        if(i < 2) {
+        User check = repository.getUserByName(user.getName());
+        if(check == null) {
             repository.updateUser(user);
         }
+
+//        List<User> users = repository.findAll();
+//        int i = 0;
+//        for(User check : users){
+//            if(check.getName().equals(user.getName())){
+//                i++;
+//            }
+//        }
+//        if(i < 2) {
+//            repository.updateUser(user);
+//        }
 
     }
 

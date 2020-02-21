@@ -1,4 +1,4 @@
-package com.spring.repository;
+package com.spring.dao;
 
 import com.spring.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +9,12 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-@Transactional
-public class UserRepositoryImpl implements UserRepository {
+public class UserDaoImpl implements UserDao {
 
     private EntityManager entityManager;
 
     @Autowired
-    public UserRepositoryImpl(EntityManager entityManager) {
+    public UserDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

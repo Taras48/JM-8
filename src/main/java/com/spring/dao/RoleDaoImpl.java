@@ -1,4 +1,4 @@
-package com.spring.repository;
+package com.spring.dao;
 
 
 import com.spring.model.Role;
@@ -9,14 +9,13 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 @Repository
-@Transactional
-public class RoleRepositoryImpl implements RoleRepository {
+public class RoleDaoImpl implements RoleDao {
 
 
     private EntityManager entityManager;
 
     @Autowired
-    public RoleRepositoryImpl(EntityManager entityManager) {
+    public RoleDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

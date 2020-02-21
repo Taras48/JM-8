@@ -1,17 +1,17 @@
-package com.spring.repository;
+package com.spring.dao;
 
 import com.spring.model.User;
 
 import java.util.List;
 
-/*public interface UserRepository extends JpaRepository<User, Long> {
+/*public interface UserDao extends JpaRepository<User, Long> {
     @Override
     void deleteById(Long aLong);
     User getUserByName(String name);
 }*/
 
 
-public interface UserRepository{
+public interface UserDao {
 
     User getUserById(Long id);
     User getUserByName(String name);
